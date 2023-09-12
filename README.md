@@ -27,9 +27,11 @@ To change the map in the simulation, add the included `.png` and `.yaml` map fil
 
 ### V. Deliverables and Submission
 
-**Deliverable 1**: After you're finished, update the entire skeleton package directory with your `gap_follow` package and directly commit and push to the repo Github classroom created for you. Your commited code should start and run in simulation smoothly.
+**Deliverable 1**: After you're finished, update the entire skeleton package directory with your `gap_follow` package and directly download the package, compress it in zip format and rename the zip file as lab3_<your last name>_<your team number>. Submit the renamed zip file directly to Canvas.
 
 **Deliverable 2**: Make a screen cast of running your reactive node in the simulation. Include a link to the video on YouTube in **`SUBMISSION.md`**. The basic requirement is that your car should be able to navigate entire loops in `levine_blocked` map, and through at least most of the obstacles in `levine_obs` map. Make screen casts on both maps.
+
+**Deliverable 3 (tentative, as a team)**: Make a recording of the run on the actual car following the gap and completing a lap on a closed loop trajectory formed by flexible ducts and some objects on the track to create gaps.
 
 ### VI. Grading Rubric
 
