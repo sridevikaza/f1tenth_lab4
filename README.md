@@ -35,9 +35,9 @@ It is fine if it is not able to make the `levine_obs` map completeley, record as
 
 ### VI. Grading Rubric
 
-- Compilation: **10** Points
-- Implemented Find-Max Gap: **40** Points
-- Implemented Find best point: **30** Points
+- Compilation: **5** Points
+- Implemented Find-Max Gap: **10** Points
+- Implemented Find best point: **10** Points
 - Levine blocked Video: **10** Points
 - Levine obstacles Video: **10** Points
 
