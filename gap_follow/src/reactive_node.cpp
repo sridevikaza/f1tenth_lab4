@@ -22,7 +22,7 @@ private:
     /// TODO: create ROS subscribers and publishers
 
     void preprocess_lidar(float* ranges)
-    {   
+    {
         // Preprocess the LiDAR scan array. Expert implementation includes:
         // 1.Setting each value to the mean over some window
         // 2.Rejecting high values (eg. > 3m)
@@ -59,8 +59,6 @@ private:
 
         // Publish Drive message
     }
-
-
 
 };
 int main(int argc, char ** argv) {
