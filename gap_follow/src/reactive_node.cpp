@@ -116,53 +116,15 @@ private:
         }
     }
 
-    void disparity_extender(float* ranges, const int ranges_size){
-
-        auto prev = ranges[0];
-        int i = 1;
-
-        // iterate through negative angles
-        while(i<ranges_size && ranges[i]<0){
-            // check for disparity (low to high jump)
-            if(ranges[i]-prev > disparity_thresh){
-                // extend the smaller value forwards by disparity window
-                for (int j=i; j<i+disparity_window; j++){
-                    ranges[j] = prev;
-                }
-                i += disparity_window;
-            }
-            else{
-                prev = ranges[i];
-                i+=1;
-            }
-        }
-
-        // iterate through positive angles
-        while(i<ranges_size){
-            // check for disparity (high to low jump)
-            if(prev-ranges[i] > disparity_thresh){
-                // extend the smaller value backwards by disparity window
-                for (int j=i-1; j>i-disparity_window; j--){
-                    ranges[j] = ranges[i];
-                }
-            }
-            prev = ranges[i]; 
-            i+=1;
-        }
-    }
-
     double calc_velocity(double angle){
         if (angle < 10*M_PI/180){ // 0 to 10 degrees
             return 5.0; //2.0
-            // return 2.0;
         }
         else if (angle < 20*M_PI/180){ // 10 to 20 degrees
             return 4.0; //1.0
-            // return 1.0;
         }
         else{ // > 20 degrees
             return 3.0; //0.5
-            // return 0.5;
         }
     }
 
@@ -170,13 +132,13 @@ private:
     void lidar_callback(const sensor_msgs::msg::LaserScan::ConstSharedPtr scan_msg) 
     {
         // Process each LiDAR scan as per the Follow Gap algorithm & publish an AckermannDriveStamped Message
+
         // preprocess lidar range data
         auto preprocess = preprocess_lidar(scan_msg->ranges.data(), scan_msg->ranges.size());
 
         // Find closest point to LiDAR
         auto closest_idx = preprocess.first;
         auto ranges = preprocess.second;
-        // disparity_extender(ranges, scan_msg->ranges.size());
 
         // Eliminate all points inside 'bubble' (set them to zero)
         for (int i = closest_idx-bubble_radius; i < closest_idx+bubble_radius; i++) {
@@ -189,7 +151,7 @@ private:
         find_max_gap(ranges, indices, scan_msg->ranges.size());
 
         // Find the best point in the gap
-        int best_point = (indices[0]+indices[1])/2; // for midpoint
+        int best_point = (indices[0]+indices[1])/2; // midpoint
 
         // Publish Drive message
         double steering_angle = scan_msg->angle_min + best_point*scan_msg->angle_increment;
